@@ -1,18 +1,53 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kang-Jaemin Portfolio</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
+
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">강재민 포트폴리오</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                    <li class="active"><a href="#">Blog <span class="sr-only">(current)</span></a></li>
+                    <li><a href="/about_me/">About me</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="container my-3">
+        <div class="row">
+            <div class = "col-md-8 col-lg-9">
+                <h1>블로그</h1>
+            </div>
+        </div>
+        <div class = "col-md-4 col-lg-3">
+            <h3>Search</h3>
+            <h3>Categories</h3>
+        </div>
+    </div>
     <h1>강재민 포트폴리오</h1>
 
     {% for p in post_list %}
-        <hr/>
-        <h2><a href = "{{ p.get_absolute_url }}">{{p.title}}</a></h2>
-        <h4>{{p.created_at}}</h4>
-        <p>{{p.content}}</p>
+    <hr />
+    <h2><a href="{{ p.get_absolute_url }}">{{p.title}}</a></h2>
+    <h4>{{p.created_at}}</h4>
+    <p>{{p.content}}</p>
     {% endfor %}
 </body>
+
 </html>
