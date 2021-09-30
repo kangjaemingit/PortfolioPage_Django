@@ -8,6 +8,7 @@
     <title>{{ post.title }} - Blog</title>
 
     <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}" media="screen">
+    <script src="https://kit.fontawesome.com/fe43f4bc80.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -25,28 +26,48 @@
     </nav>
      <div class="container mt-5">
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-8" id="main-area">
                     <!-- Post content-->
                     <article>
                         <!-- Post header-->
                         <header class="mb-4">
                             <!-- Post title-->
                             <h1 class="fw-bolder mb-1">{{post.title}}</h1>
+                            {% if post.hook_text %}
+                                <h5 class="text-muted">{{post.hook_text}}</h5>
+                            {% endif %}
                              <div class="text-muted fst-italic mb-2">작성자명 쓸 위치</div>
                             <!-- Post meta content-->
                             <hr/>
-                            <div class="text-muted fst-italic mb-2">Posted on {{post.created_at}}</div>
+                            <div class="text-muted fst-italic mb-2" id="post-area">Posted on {{post.created_at}}</div>
                             <hr/>
 
 
                         </header>
                         <!-- Preview image figure-->
-                        <figure class="mb-4"><img class="img-fluid rounded" src="{{post.head_image.url}}" alt="..." /></figure>
+                        {% if post.head_image %}
+                            <figure class="mb-4"><img class="img-fluid rounded" src="{{post.head_image.url}}" alt="{{post.title}} head image" /></figure>
+                        {% else %}
+                            <figure class="mb-4"><img class="img-fluid rounded" src="http://picsum.photos/seed/{{post.id}}/800/200" alt="random image"  /></figure>
+                        {% endif %}
                         <hr/>
                         <!-- Post content-->
                         <section class="mb-5">
                             <p class="fs-5 mb-4">{{post.content}}</p>
-
+                            {% if post.file_upload %}
+                                <a href="{{post.file_upload.url}}" class="btn btn-outline-dark" role="button" download>Download
+                                    {% if post.get_file_ext == 'csv' %}
+                                        <i class="fas fa-file-csv"></i>
+                                    {% elif post.get_file_ext == 'xlsx' or post.get_file_ext == 'xls' %}
+                                        <i class="fas fa-file-excel"></i>
+                                    {% elif post.get_file_ext == 'docx' or post.get_file_ext == 'doc' %}
+                                        <i class="fas fa-file-word"></i>
+                                    {% else %}
+                                        <i class="far fa-file"></i>
+                                    {% endif %}
+                                    {{ post.get_file_name }}
+                                </a>
+                            {% endif %}
                         </section>
                     </article>
                     <!-- Comments section-->
