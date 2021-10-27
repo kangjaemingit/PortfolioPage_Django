@@ -8,6 +8,11 @@
 <!-- Post content-->
 
 <div id="post-area">
+    {% if post.category %}
+        <span class="badge badge-secondary float-right">{{ post.category }}</span>
+    {% else %}
+        <span class="badge badge-secondary float-right">미분류</span>
+    {% endif %}
     <article>
     <!-- Post header-->
     <header class="mb-4">
@@ -16,7 +21,12 @@
         {% if post.hook_text %}
             <h5 class="text-muted">{{post.hook_text}}</h5>
         {% endif %}
-         <div class="text-muted fst-italic mb-2">작성자명 쓸 위치</div>
+         <div class="text-muted fst-italic mb-2">
+             <p class="lead">
+                 by
+                 <a href="#">{{ post.author | upper }}</a>
+             </p>
+         </div>
         <!-- Post meta content-->
         <hr/>
         <div class="text-muted fst-italic mb-2">Posted on {{post.created_at}}</div>
