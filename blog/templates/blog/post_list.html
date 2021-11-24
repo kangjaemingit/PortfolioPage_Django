@@ -10,6 +10,7 @@
 
 <h1>
     블로그
+    {% if search_info %}<small class="text-muted">{{ search_info }}</small>{% endif %}
     {% if category %}<span class="badge bg-secondary">{{ category }}</span>{% endif %}
     {% if tag %}<span class="badge bg-light text-dark"><i class="bi bi-tag-fill"></i>{{ tag }} ({{ tag.post_set.count }})</span>{% endif %}
 </h1>
@@ -50,17 +51,26 @@
 </div>
 {% endfor %}
 <!-- Pagination-->
+
     <nav aria-label="Pagination">
         <hr class="my-0" />
+        {% if is_paginated %}
         <ul class="pagination justify-content-center my-4">
-            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
-            <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
-            <li class="page-item"><a class="page-link" href="#!">2</a></li>
-            <li class="page-item"><a class="page-link" href="#!">3</a></li>
-            <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
-            <li class="page-item"><a class="page-link" href="#!">15</a></li>
-            <li class="page-item"><a class="page-link" href="#!">Older</a></li>
+
+            {% if page_obj.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Older</a></li>
+            {% else %}
+                <li class="page-item disabled"><a class="page-link" href="#">Older</a></li>
+            {% endif %}
+
+            {% if page_obj.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Newer</a></li>
+            {% else %}
+            <li class="page-item disabled"><a class="page-link" href="#">Newer</a></li>
+            {% endif %}
         </ul>
+        {% endif %}
+
     </nav>
 {% else %}
 <h3>아직 게시물이 없습니다.</h3>

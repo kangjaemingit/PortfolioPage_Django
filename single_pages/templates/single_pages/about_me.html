@@ -1,20 +1,95 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>개발자 강재민입니다.</title>
+
+    <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}" media="screen">
+    <link rel="stylesheet" href="{% static 'single_pages/css/about_me.css' %}" media="screen">
+    <script src="https://kit.fontawesome.com/*********.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <nav>
-        <a href="/blog/">Blog</a>
-        <a href="/about_me/">About me</a>
-    </nav>
+    {% include 'blog/navbar.html' %}
 
-    <h1>안녕하세요 강재민입니다.</h1>
-    <h2>이력</h2>
-    <h2>Portfolio</h2>
-    <h3>미완</h3>
+    <section>
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h1>안녕하세요 강재민입니다.</h1>
+                    <br/>
+                    <p class="lead">
+                        웹 풀스택을 꿈꾸는 강재민입니다. 귀사에서 유능한 인재가 되기를 희망합니다.
+                    </p>
+
+                    <ul>
+                        <li>WORK EXPERIENCE</li>
+                        <ul>
+                            <li>신입</li>
+                        </ul>
+
+                        <li>EDUCATION</li>
+                        <ul>
+                            <li>학사, 스마트IT전공, 대구한의대학교(2016.03 ~ 2022.02)</li>
+                            <li>졸업, 인문계, 포항대동고등학교(2013.03 ~ 2016.02)</li>
+                        </ul>
+                        <li>LICENSE</li>
+                        <ul>
+                            <li>정보처리기사 (2021.11)</li>
+                        </ul>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <img class="img-fluid" src="{% static 'single_pages/images/my_back.jpg' %}">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-light margin-for-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1>PORTFOLIO</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card" data-bs-toggle="modal" data-bs-target="#modal1">
+                        <img class="card-img-top" src="{% static 'single_pages/images/matchingground.png' %}">
+                        <div class="card-body">
+                            <h5 class="card-title">[REACT]매칭그라운드</h5>
+                            <p>Node.js, React.js 를 사용하여 만든 팀 풋살 매치 웹 프로그램 입니다.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card" data-bs-toggle="modal" data-bs-target="#modal2">
+                        <img class="card-img-top" src="{% static 'single_pages/images/girin_baguni.png' %}">
+                        <div class="card-body">
+                            <h5 class="card-title">[ANDROID]기린바구니</h5>
+                            <p>대구한의대학교 학생들을 위한 시간표 설계 안드로이드 앱 입니다.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card" data-bs-toggle="modal" data-bs-target="#modal3">
+                        <img class="card-img-top" src="{% static 'single_pages/images/shoppingmall.png' %}">
+                        <div class="card-body">
+                            <h5 class="card-title">[PHP]과일나라 쇼핑몰</h5>
+                            <p>php를 사용하여 제작한 과일나라 쇼핑몰 입니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="fixed-bottom">
+        {% include 'blog/footer.html' %}
+    </div>
+
 </body>
 </html>
