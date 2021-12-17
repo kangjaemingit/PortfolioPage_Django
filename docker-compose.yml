@@ -3,6 +3,7 @@ version: '3'
 services:
     nginx:
       build: ./nginx
+      image: nginx:1.15-alpine
       volumes:
         - static_volume:/usr/src/app/_static
         - media_volume:/usr/src/app/_media
