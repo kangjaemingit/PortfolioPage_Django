@@ -4,7 +4,6 @@ services:
     nginx:
       build: ./nginx
       image: nginx:1.15-alpine
-      restart: unless-stopped
       volumes:
         - static_volume:/usr/src/app/_static
         - media_volume:/usr/src/app/_media
@@ -19,7 +18,6 @@ services:
         - web
     certbot:
       image: certbot/certbot
-      restart: unless-stopped
       entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
       volumes:
         - ./data/certbot/conf:/etc/letsencrypt
